@@ -24,13 +24,13 @@
                     <h4>Properties Locations</h4>
                     <ul class="links">
                         <li>
-                            <a>Abuja</a>
+                            <a>Manchester</a>
                         </li>
                         <li>
-                            <a>Lagos</a>
+                            <a>Liverpool</a>
                         </li>
                         <li>
-                            <a>Porthacourt</a>
+                            <a>London</a>
                         </li>
                 
                 
