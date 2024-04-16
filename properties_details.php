@@ -28,7 +28,14 @@ include("functions.php");
         $pic_4						    =			$query_info['pic_4'];
         $pic_5						    =			$query_info['pic_5']; 
         
-        
+ 
+		if ($pic_1 == "NULL") {$pic_1 = "no_photo.png";}
+		if ($pic_2 == "NULL") {$pic_2 = "no_photo.png";}
+		if ($pic_3 == "NULL") {$pic_3 = "no_photo.png";}
+		if ($pic_4 == "NULL") {$pic_4 = "no_photo.png";}
+		if ($pic_5 == "NULL") {$pic_5 = "no_photo.png";}
+
+ 
             $query_seller_user	=	mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM users WHERE id='$user_id'"));
                 
             $profile_picture						=			$query_seller_user['profile_picture'];

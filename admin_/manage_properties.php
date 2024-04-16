@@ -385,29 +385,70 @@ if(isset($_GET["delete_property"]))
 
 
 
+
 <?php
 
         if( (isset($_GET['update_status'])) && (isset($_GET['id'])) )
         {
             $id                     =       $_GET['id'];
+            $qry_properties         =       mysqli_query($conn,"SELECT * FROM properties WHERE id='$id'") or die(mysqli_error($conn));
+
+            if(mysqli_num_rows($qry_properties) > 0)
+            { 
+   
+                      
+            
 
             if($_GET['update_status'] == "approve")
             {
-                mysqli_query($conn,"UPDATE properties SET status = '1' WHERE  id='$id'");
+
+              $query_info=mysqli_fetch_assoc($qry_properties);
+
+              if(($query_info['pic_1']        ==          "NULL") ||
+                ($query_info['pic_2']         ==          "NULL") ||
+                ($query_info['pic_3']         ==          "NULL") ||
+                ($query_info['pic_4']         ==          "NULL") ||
+                ($query_info['pic_5']         ==          "NULL"))
+                {
+                  
+                  $custom_flash_msg = "Property status could not be updated! Agent is expected to upload atleast 5 Property photos. ";
+                  setFlashMessage($custom_flash_msg, 'error'); //set error or success
+                  header("location: ?");
+                     
+                }
+                else
+                {
+                  mysqli_query($conn,"UPDATE properties SET status = '1' WHERE  id='$id'");
+
+            
+                  $custom_flash_msg = "Property status has been Updated";
+                  setFlashMessage($custom_flash_msg, 'success'); //set error or success
+                  header("location: ?");
+  
+                }
+                                 
               
             }
             else
             {
                 mysqli_query($conn,"UPDATE properties SET status = '0' WHERE  id='$id'");
 
+            
+                $custom_flash_msg = "Property status has been Updated";
+                setFlashMessage($custom_flash_msg, 'success'); //set error or success
+                header("location: ?");
+    
             }
 
-            
-            $custom_flash_msg = "Property status has been Updated";
-            setFlashMessage($custom_flash_msg, 'success'); //set error or success
-            header("location: ?");
 
         }
+        else
+        {
+          $custom_flash_msg = "Request Failed, Invalid ID $id ";
+          setFlashMessage($custom_flash_msg, 'error'); //set error or success
+          header("location: ?"); 
+        }
+      }
 
 
  

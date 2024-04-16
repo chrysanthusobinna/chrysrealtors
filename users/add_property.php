@@ -222,7 +222,8 @@ if(isset($_POST["submit"]))
 
 
 	mysqli_query($conn,"INSERT INTO properties SET 	title	 		= 	'$title',
-													address		 	= 	'$address',
+													address		 	= 	'$logged_user_id',
+													user_id		 	= 	'$address',
 													price		 	= 	'$price',
 													bedroom 		= 	'$bedroom',
 													bathroom		= 	'$bathroom',
